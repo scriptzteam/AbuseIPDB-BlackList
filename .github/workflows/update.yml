@@ -1,0 +1,31 @@
+name: Update AbuseIPDB Data
+
+on:
+  schedule:
+    - cron: '*/72 * * * *'  # Run every 72 minutes
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Update
+        run: bash abuseipdb.sh
+      
+      - name: Force add and commit
+        run: |
+          git config --local user.email "scriptzteam@gmail.com"
+          git config --local user.name "scriptzteam"
+          git add -f abuseipdb_blacklist.txt
+          git status
+          if git status --porcelain | grep -q '^?? \|^A  \|^M  '; then
+            echo "Changes detected, committing..."
+            git commit -m "Update"
+            git push
+          else
+            echo "No changes to commit"
+          fi 
