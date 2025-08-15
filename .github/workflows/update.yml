@@ -5,6 +5,9 @@ on:
     - cron: '*/72 * * * *'  # Run every 72 minutes
   workflow_dispatch:  # Allow manual trigger
 
+env:
+  ABUSEIPDB_API_KEY: ${{ secrets.ABUSEIPDB_API_KEY }}
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -28,7 +31,4 @@ jobs:
             git push
           else
             echo "No changes to commit"
-          fi 
-          
-    env:
-      ABUSEIPDB_API_KEY: ${{ secrets.ABUSEIPDB_API_KEY }}
+          fi
