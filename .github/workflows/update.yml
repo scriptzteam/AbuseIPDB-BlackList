@@ -15,7 +15,7 @@ jobs:
       
       - name: Update
         run: bash abuseipdb.sh
-      
+        
       - name: Force add and commit
         run: |
           git config --local user.email "scriptzteam@gmail.com"
@@ -29,3 +29,6 @@ jobs:
           else
             echo "No changes to commit"
           fi 
+          
+    env:
+      ABUSEIPDB_API_KEY: ${{ secrets.ABUSEIPDB_API_KEY }}
