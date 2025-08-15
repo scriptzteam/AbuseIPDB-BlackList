@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-API_KEY="${{ secrets.ABUSEIPDB_API_KEY }}"
+API_KEY="$ABUSEIPDB_API_KEY"
 CONFIDENCE_MIN=100
 LIMIT=10000
 OUTPUT_FILE="abuseipdb_blacklist.txt"
