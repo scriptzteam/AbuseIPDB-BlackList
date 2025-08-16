@@ -2,7 +2,7 @@ name: Update AbuseIPDB Data
 
 on:
   schedule:
-    - cron: '*/72 * * * *'  # Run every 72 minutes
+    - cron: '*/144 * * * *'  # Run every 144 minutes
   workflow_dispatch:  # Allow manual trigger
 
 env:
